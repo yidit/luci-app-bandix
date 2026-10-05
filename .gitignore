@@ -1,0 +1,24 @@
+# ============================================================
+# luci-app-bandix 本地开发用忽略规则
+# 目的：保持 git status 干净，方便与上游 timsaya/luci-app-bandix 同步
+# ============================================================
+
+# ---- 构建产物 ----
+# build-in-sdk.sh 在 WSL SDK 里编译出的 ipk，属于本地产物，不入库
+dist/
+*.ipk
+
+# ---- 构建 / 校验日志 ----
+*.log
+
+# ---- 临时目录 ----
+# verify-ipk.sh 解包 ipk 做校验时使用的临时目录
+.verify/
+# 浏览器测试（Playwright）产生的快照、截图、控制台日志
+.playwright-mcp/
+
+# ---- 本机专用的辅助脚本 ----
+# 这两个脚本里的 SDK 路径是写死的（/home/dai/natkeepalive-sdk、/mnt/c/...），
+# 只在本机有意义。如果以后想提交到仓库或做成通用脚本，把下面两行删掉即可。
+build-in-sdk.sh
+verify-ipk.sh

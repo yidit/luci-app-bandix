@@ -409,6 +409,8 @@ return view.extend({
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 16px;
+                /* 卡片外边距已统一清零，这里补回与上方告警条的间距 */
+                margin-top: 16px;
                 margin-bottom: 16px;
             }
             
@@ -439,6 +441,8 @@ return view.extend({
                 border-radius: 8px;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
                 transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+                /* 清零边距：主题只把 :last-child 的边距归零，网格拉伸会导致同行卡片不等高 */
+                margin: 0 0 0 0 !important;
             }
 
             .theme-dark .stats-grid .cbi-section {

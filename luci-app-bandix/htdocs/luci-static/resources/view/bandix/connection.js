@@ -245,7 +245,9 @@ return view.extend({
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 16px;
-                margin-top: 0;
+                /* 卡片外边距已统一清零，这里补回与上方告警条、下方设备统计卡片的间距 */
+                margin-top: 16px;
+                margin-bottom: 16px;
             }
             
             /* 移动端统计卡片布局 */
@@ -445,6 +447,8 @@ return view.extend({
                 border-radius: 8px;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
                 transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+                /* 清零边距：主题只把 :last-child 的边距归零，网格拉伸会导致同行卡片不等高 */
+                margin: 0 0 0 0 !important;
             }
 
             .theme-dark .stats-grid .cbi-section {
@@ -813,8 +817,10 @@ return view.extend({
                 cursor: pointer;
             }
 
+            /* 抵消 Argon 主题给 label 内复选框加的 top:0.4rem，否则会比文字偏低 */
             .flows-modal-content .flows-repl-toggle input {
                 margin: 0;
+                top: 0 !important;
             }
 
             .flows-modal-content .flows-protocol-tcp {
