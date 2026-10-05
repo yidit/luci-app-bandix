@@ -1,0 +1,12 @@
+# 统一换行符：仓库与工作区一律使用 LF
+#
+# 背景：Windows 上 core.autocrlf=true 会把文本文件检出成 CRLF。
+# 本项目的 rpcd 插件脚本 root/usr/libexec/rpcd/luci.bandix 必须以 LF 开头，
+# 一旦变成 "#!/bin/sh\r"，路由器上找不到解释器 /bin/sh\r，脚本无法执行，
+# luci.bandix 这个 ubus 对象就注册不上，表现为 LuCI 报 "Object not found"、
+# 版本显示未知、数据加载失败。
+#
+# text=auto 由 Git 自行判断文本/二进制；eol=lf 强制文本文件在任何平台上
+# 都以 LF 检出并存储。二进制文件（如 docs/images/*.png）不受影响。
+
+* text=auto eol=lf
